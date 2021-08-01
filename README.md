@@ -26,3 +26,5 @@ A powerful discord bot for your server! Hyped Bot V3.0
 * `random-reddit - ^2.0.1`
 * `superagent - ^6.1.0`
 * `weather-js - ^2.0.0` 
+
+© HypedGroupCode
