@@ -3,7 +3,7 @@ A powerful discord bot for your server! Hyped Bot V3.0
 
 * ⚙️ Ferramentas - Siga os passos abaixo para iniciar o bot
  * 🌟 Insira o TOKEN em um .env seguindo o exemplo
- * 📌 Defina o Prefixo em `config.json` e `botconfig.json` localizados na pasta principal e /commands
+ * 📌 Defina o Prefixo em `config.json` localizados na pasta principal
  * 🌠 Inicie com `node index.js`
 
 **Requirements**
