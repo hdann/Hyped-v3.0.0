@@ -116,7 +116,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
                *${prefix}coinflip* - Joga moeda para cima.
 
-               *${prefix}random* - Mostra aleatoriamente um número.
+               *${prefix}simsimi* <mensagem> - Fale com o simsimi. 
 
                *${prefix}say <mensagem>* - Faz com que eu repita uma frase.
 

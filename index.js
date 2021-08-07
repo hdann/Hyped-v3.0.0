@@ -126,7 +126,7 @@ client.on('message', async (message) => {
 
 //Registrando slash comands
 client.on('ready', () => {
-  let prefix = config.deafaultPrefix
+  let prefix = config.defaultPrefix
 
   console.log('✅| Slash Comands Funcionando')
 
@@ -553,5 +553,5 @@ app.get("/", (request, response) => {
 app.listen(PORT)
 
 
-//Código de ! Diogo06™#1135 Não Disturbe
+//Código de ! Diogo06🐾#1135 Não Disturbe
 client.login(TOKEN);
