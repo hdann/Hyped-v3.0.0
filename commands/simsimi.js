@@ -26,7 +26,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
     });
 
     resp.on('end', async () => {
-      await webhook.send(JSON.parse(data).success)
+      await webhook.send(`<@${message.author.id}>` + JSON.parse(data).success)
       webhook.delete();
     });
 
