@@ -29,4 +29,5 @@ A powerful discord bot for your server! Hyped Bot V3.0
 
 ##Atualizações
 * Veja as atualizações do Hyped no nosso [Site](https://hypeds.com/blog)
+
 © HypedGroupCode
