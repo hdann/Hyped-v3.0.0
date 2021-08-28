@@ -113,6 +113,9 @@ client.on('message', async (message) => {
     if(command === "bal") command = "atm"
     if(command === "weather") command = "tempo"
     if(command === "profile") command = "perfil"
+    if(command === "send") command = "chat"
+    if(command === "pontos") command = "points"
+    if(command === "xp") command = "points"
 
     try {
         const commandFile = require(`./commands/${command}.js`)
@@ -126,7 +129,7 @@ client.on('message', async (message) => {
 
 //Registrando slash comands
 client.on('ready', () => {
-  let prefix = config.deafaultPrefix
+  let prefix = config.defaultPrefix
 
   console.log('✅| Slash Comands Funcionando')
 
@@ -257,6 +260,14 @@ let messageapagada = new Discord.MessageEmbed()
 
 channel.send(messageapagada);
 });
+
+//Level-System
+client.on('message', (message) => {
+  if(message.author.bot) return; 
+  
+  db.add(`${message.guild.id}_${message.author.id}_points`, 1)
+  db.add(`${message.author.id}_points`, 1)
+})
 
 //✅》Welcome
 client.on('guildMemberAdd', (member, guild) => {
@@ -465,14 +476,14 @@ client.on("guildMemberRemove", async (member) => {
 
 //Console Físico
 client.on("ready", () => {
+  /*
   var content = "Está tudo Ok";
-  var channel = client.guilds.cache
-    .get("777870393137430589")//Guilda
-    .channels.cache.get("777870601243197451");//Canal
+  var channel = client.guilds.cache.get("777870393137430589").channels.cache.get("777870601243197451");
   setInterval(function() {
     channel.send(content); 
   }, 100 * 60 * 60 * 1); 
   channel.send(content);
+  */
   console.log("✅| Está tudo OK");
 })
 
