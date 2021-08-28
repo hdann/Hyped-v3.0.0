@@ -1,4 +1,4 @@
-## Hyped-v3.0.0
+## Hyped-v3
 A powerful discord bot for your server! Hyped Bot V3.0
 
 * ⚙️ Ferramentas - Siga os passos abaixo para iniciar o bot
@@ -30,6 +30,6 @@ A powerful discord bot for your server! Hyped Bot V3.0
 ## Atualizações
 * Veja as atualizações do Hyped no nosso [Site](https://hypeds.com/blog)
 
-* Atualmente o Hyped Está na **v3.0.1**
+* Atualmente o Hyped Está na **v3.0.4**
 
 © HypedGroupCode
