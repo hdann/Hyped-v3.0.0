@@ -21,7 +21,7 @@ A powerful discord bot for your server! Hyped Bot V3.0
 * `moment - ^2.29.1`
 * `ms - ^2.1.3`
 * `number-to-words - ^1.2.4`
-* `parse-ms ^2.1.0`
+* `parse-ms 2.1.0`
 * `quick.db - ^7.1.3`
 * `random-reddit - ^2.0.1`
 * `superagent - ^6.1.0`
