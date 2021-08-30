@@ -26,11 +26,44 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
     });
 
     resp.on('end', async () => {
-      await webhook.send(`<@${message.author.id}>` + JSON.parse(data).success)
+      console.log(JSON.parse(data).success)
+      await webhook.send(`<@${message.author.id}> | ` + JSON.parse(data).success)
+      webhook.delete();
+      //message.channel.send(`<@${message.author.id}> Simsimi:` + JSON.parse(data).success)
+    });
+
+  }).on("error", (err) => {
+    console.log("Error:" + err.message);
+  });
+
+}
+
+/*
+request.get(`https://api.simsimi.net/v1/?text=${argumentos}&lang=pt&cf=false`).then(async (response) => {
+
+    console.log(response.data.success)
+    await webhook.send(`<@${message.author.id}> | ` + response.data.success)
+    webhook.delete();
+
+  }).catch(error => {
+    console.log(error)
+  })
+
+
+request.get(`https://api.simsimi.net/v1/?text=${argumentos}&lang=pt&cf=false`, (resp) => {
+    let data = '';
+
+    resp.on('data', (chunk) => {
+      data += chunk;
+    });
+
+    resp.on('end', async () => {
+      console.log(JSON.parse(data).success)
+      await webhook.send(`<@${message.author.id}> | ` + JSON.parse(data).success)
       webhook.delete();
     });
 
   }).on("error", (err) => {
     console.log("Error:" + err.message);
-  }); 
-}
+  });
+*/

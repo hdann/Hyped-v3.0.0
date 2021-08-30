@@ -1,15 +1,16 @@
 {
   "name": "Hyped-v300",
-  "version": "1.0.0",
+  "version": "3.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Diogo06221",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "beautify": "0.0.8",
     "canvas": "^2.8.0",
     "caxinha": "^0.2.62",

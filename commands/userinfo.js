@@ -1,4 +1,5 @@
 const Discord = require('discord.js')
+const db = require('quick.db')
 
 const moment = require('moment')
 moment.locale('pt-br')
@@ -6,6 +7,7 @@ moment.locale('pt-br')
 module.exports = {
 
   run: function (client, message, args, prefix, color, config) {
+
     const embederror21 = new Discord.MessageEmbed()
    .setTitle(`<a:HYpositive:763111725510950932> | Comando: ${prefix}Userinfo`)
    .setColor(color)
@@ -13,15 +15,20 @@ module.exports = {
    .addField(`👍 | Observação:`, `<a:HYseta1:756119648654852106> Nenhuma`);
 
     let user = message.mentions.users.first();
+
     if (!user) return message.reply(embederror21);
     const inline = true
     const status = {
       online: ' <:online:821496127890391050> Online',
       idle: ' <:away:821496127634538546> Away',
-      dnd: ' <:dnd:821496127684608051> Dnd',
+      dnd: ' <:dnd:821496127684608051> DND',
       offline: ' <:offline:821496127701385267> Offline'
     }
     const member = message.mentions.members.first() || message.guild.members.get(args[0]) || message.member
+
+    let serverpoints = db.get(`${message.guild.id}_${member.id}_points`)
+    let globalpoints = db.get(`${member.id}_points`)
+
     const target = message.mentions.users.first() || message.author
     const bot = member.user.bot ? '`🤖` Sim' : ' `🙂` Não'
 
@@ -60,6 +67,9 @@ module.exports = {
           .setTitle('🔍| Mais Informações do usuário')
           .setDescription('📝 | Aqui estão mais algumas informações deste usuário')
           .setColor(color)
+          .addField('> 🏆|Pontos', `-> XP no servidor: **${serverpoints}**
+          
+          -> XP global: **${globalpoints}**`)
           .addField('> Comando solicitado por',`**${message.member.displayName}**`,inline)
           .addField('**🤖|Bot**', `${bot}`, inline, true)
           .addField('> **🚪|Entrou aqui em:**', formatDate('DD/MM/YYYY, às HH:mm:ss', member.joinedAt))

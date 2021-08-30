@@ -52,6 +52,8 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
                *${prefix}daily* - Te da Até $ 10.000,00 por Dia.
 
+               *${prefix}points ou ${prefix}pontos* - Mostra sua pontuação no Hyped.
+
                *${prefix}atm ou ${prefix}bal - Te mostra quanto dinheiro vc tem*
 
                *${prefix}lembrete <tempo> <lembrete>* - Te lembra de algo importante.
@@ -61,8 +63,6 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
                *${prefix}tempo ou ${prefix}weather* - Mostra como está o tempo na sua cidade!
 
                *${prefix}qrcode <url>* - Cria um qrcode!
-
-               *${prefix}invitebot* - Me adicione em seu servidor!
 
                *${prefix}serverinfo* - informações do servidor!
 

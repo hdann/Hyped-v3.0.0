@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   const member = message.mentions.users.first()
   if(!member) return message.channel.send(embd)
 
-  let image = await Caxinha.canvas.affect(member.displayAvatarURL({ dynamic: false, format: 'png' }))
+  let image = await Caxinha.canvas.affect(member.displayAvatarURL({ dynamic: true, format: "png", size: 1024 }))
 
   let attachment = new Discord.MessageAttachment(image, "affect.png")
 
