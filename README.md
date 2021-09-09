@@ -1,5 +1,6 @@
 ## Hyped-v3
 A powerful discord bot for your server! Hyped Bot V3.0
+[![Discord Bots](https://top.gg/api/widget/status/777850651669168138.svg)](https://top.gg/bot/777850651669168138)
 
 * ⚙️ Ferramentas - Siga os passos abaixo para iniciar o bot
  * 🌟 Insira o TOKEN em um .env seguindo o exemplo
