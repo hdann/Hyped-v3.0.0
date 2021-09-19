@@ -30,6 +30,6 @@ A powerful discord bot for your server! Hyped Bot V3.0
 ## Atualizações
 * Veja as atualizações do Hyped no nosso [Site](https://hypeds.com/blog)
 
-* Atualmente o Hyped Está na **v3.0.4**
+* Atualmente o Hyped Está na **v3.0.5**
 
 © HypedGroupCode
