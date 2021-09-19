@@ -28,7 +28,7 @@ A powerful discord bot for your server! Hyped Bot V3.0
 * `weather-js - ^2.0.0` 
 
 ## Atualizações
-* Veja as atualizações do Hyped no nosso [Site](https://hypeds.com/blog)
+* Veja as atualizações do Hyped no nosso [Discord](https://www.hypeds.com/discord)
 
 * Atualmente o Hyped Está na **v3.0.5**
 
