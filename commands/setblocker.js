@@ -4,6 +4,10 @@ const db = require('quick.db');
 module.exports.run = async (client, message, args) => {
   if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(':x: | Nop! Você não pode usar isso!')
 
+  if(!message.guild.me.permissions.has(config.permission.adm)) {
+    return message.reply(`:x: | Eu não tenho a permissão: ${config.permission.adm}`)
+  }
+
   let server = message.guild.id
 
   const embed = new Discord.MessageEmbed()

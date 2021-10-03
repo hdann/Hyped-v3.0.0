@@ -11,6 +11,10 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
       channel = message.mentions.channels.first() || message.channel;
     }
 
+    if(!message.guild.me.permissions.has(config.permission.adm)) {
+    return message.reply(`:x: | Eu não tenho a permissão: ${config.permission.adm}`)
+  }
+
     if (!userPermission)
       return message.reply(`:x: | Apenas pessoas com a permissão: ${config.permission.manager} podem usar esse comando!`);
 

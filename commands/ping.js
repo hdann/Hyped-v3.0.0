@@ -1,34 +1,16 @@
 const Discord = require('discord.js');
+const UptimeRobot = require('@lazydb_community/uptimerobot');
+const uptimerobot = new UptimeRobot(process.env.UTRKEY);
 
-module.exports.run = async (client, message, args) => {
-  const m = await message.channel.send('<a:HYbaiacu:756119666971377756>=🏓**| Pingando!**');
+module.exports.run = async (client, message, args, prefix, color, config) => {
+  let m = await message.channel.send('<a:loading:785559393449017394> | Pingando...');
+  await m.delete({timeout: 100})
 
   const embed = new Discord.MessageEmbed()
-    .setTitle(`🏓 **| Pong!**\nLatência do Server: **${m.createdTimestamp -
-      message.createdTimestamp}ms.**\nLatência da API: **${Math.round(client.ws.ping)}ms**`)
-    .setColor("RANDOM")
-    .setFooter(`© HypedGroupCode`)
-  message.channel.send(embed).then(msg => {
-    msg.react('↩').then(r => {
+  .setTitle(`⚙️| Latência do Bot`)
+  .setDescription(`> **API:** <a:network:888962796019138571>\`${Math.round(client.ws.ping)}ms\` \n \n > **Guild:** <a:network:888962796019138571>\`${m.createdTimestamp - message.createdTimestamp}ms\` \n \n > **Instabilidades?** Veja o nosso [status](${config.statusURL})`)
+  .setColor(color)
+  .setTimestamp();
 
-    })
-    const pingFilter = (reaction, user) =>
-    reaction.emoji.name === '↩' && user.id ===
-    message.author.id;
-
-    const ping = msg.createReactionCollector(pingFilter);
-
-    ping.on('collect', r => {
-      const pingembed = new Discord.MessageEmbed()
-
-    .setTitle(`🏓 **| Pong!**\nLatência do Server: **${m.createdTimestamp -
-      message.createdTimestamp}ms.**\nLatência da API: **${Math.round(
-      client.ws.ping
-    )}ms**`)
-    .setColor("RANDOM")
-    .setFooter(`© HypedGroupCode`)
-    msg.edit(pingembed)
-
-    })
-  })
-};
+  message.channel.send(embed)
+}

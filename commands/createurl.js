@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const db = require('quick.db');
 const express = require('express');
 const app = express()
+const router = express.Router();
 
 module.exports.run = async (client, message, args, prefix, color, config) => {
   const embd = new Discord.MessageEmbed()
@@ -19,9 +20,11 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   if(!args[0]) return message.channel.send(embd)
   if(!args[1]) return message.channel.send(embd)
 
-  app.get(`/${args[0]}`, (req, res) => {
+  router.get(`/${args[0]}`, (req, res) => {
     res.redirect(args[1])
   });
+
+  module.exports = router;
 
   let channel = client.guilds.cache.get("777870393137430589").channels.cache.get("782791748942299167")
 

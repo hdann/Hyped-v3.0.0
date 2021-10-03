@@ -7,6 +7,10 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   let user = message.mentions.users.first();
   if(!user) return message.reply(':x: | Mencione um usuário!')
 
+  if(!message.guild.me.permissions.has(config.permission.adm)) {
+    return message.reply(`:x: | Eu não tenho a permissão: ${config.permission.adm}`)
+  }
+
   const rawTime = args[1];
   const time = ms(rawtime);
 

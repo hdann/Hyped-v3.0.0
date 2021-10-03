@@ -9,6 +9,10 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .addField(`👍 | Observação:`, `<a:HYseta1:756119648654852106> O Simsimi é muito mal educado. Não se sinta ofendido por suas respostas!`)
   .setFooter(`© HypedGroupCode`);
 
+  if(!message.guild.me.hasPermission(config.permission.adm)) {
+    return message.reply(`:x: | Eu não tenho a permissão: ${config.permission.adm}`)
+  }
+
   let argumentos = args.slice(0).join(" ")
   if(!argumentos) return message.channel.send(embd)
 
@@ -18,7 +22,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
   //`https://api.simsimi.net/v1/?text=${argumentos}&lang=pt&cf=true`
 
-  request.get(`https://api.simsimi.net/v1/?text=${argumentos}&lang=pt&cf=false`, (resp) => {
+  request.get(`https://api.simsimi.net/v2/?text=${argumentos}&lc=pt&cf=false`, (resp) => {
     let data = '';
 
     resp.on('data', (chunk) => {

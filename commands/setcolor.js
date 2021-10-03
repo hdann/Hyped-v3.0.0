@@ -11,6 +11,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .addField(`👍 | Observação:`, `<a:HYseta1:756119648654852106> O Bot Aceita Apenas Cores Em HEX! Ex: #ad5757`);
   
   if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("Você não pode trocar a cor deste servidor, pois vc não tem a permissão necessária `MANAGE_GUILD`");
+  
   if(!args[0]) return message.reply(embederror)
 
   colors[message.guild.id] = {

@@ -10,6 +10,7 @@
   "author": "Diogo06221",
   "license": "ISC",
   "dependencies": {
+    "@lazydb_community/uptimerobot": "^1.0.1",
     "axios": "^0.21.1",
     "beautify": "0.0.8",
     "canvas": "^2.8.0",
@@ -27,6 +28,8 @@
     "quick.db": "^7.1.3",
     "random-reddit": "^2.0.1",
     "superagent": "^6.1.0",
+    "tinyurl": "^1.1.7",
+    "uptimerobot-js": "^1.0.2",
     "weather-js": "^2.0.0"
   }
 }

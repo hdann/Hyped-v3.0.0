@@ -11,6 +11,10 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
   if(!message.member.hasPermission(config.permission.mod)) return message.channel.send(`:x: | Apenas pessoas com a permissão: ${config.permission.manager} podem usar esse comando!`);
 
+  if(!message.guild.me.permissions.has(config.permission.mod)) {
+    return message.reply(`:x: | Eu não tenho a permissão: ${config.permission.mod}`)
+  }
+
   let membro = message.mentions.users.first()
   if(!membro) return message.channel.send(embd)
 

@@ -8,6 +8,10 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .addField(`👍 | Observação:`, `<a:HYseta1:756119648654852106> Nenhuma`)
   .setFooter(`© HypedGroupCode`);
 
+  if(!message.guild.me.permissions.has(config.permission.adm)) {
+    return message.reply(`:x: | Eu não tenho a permissão: ${config.permission.adm}`)
+  }
+
   message.delete();
   try {
     let user;

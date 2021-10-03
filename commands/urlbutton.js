@@ -16,6 +16,10 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .setTimestamp()
   .setFooter("© HypedGroupCode");
 
+  if(!message.guild.me.permissions.has(config.permission.adm)) {
+    return message.reply(`:x: | Eu não tenho a permissão: ${config.permission.adm}`)
+  }
+
   if(!args[0]) return message.channel.send(embedhelp);
 
   if(!args[1]) return message.channel.send(embedhelp);

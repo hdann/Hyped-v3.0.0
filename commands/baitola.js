@@ -34,7 +34,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .setTitle(`:rainbow_flag: │Teste de Baitola!`)
   .setDescription(`${membro.username} é **999%** Baitola`)
   .setColor('RANDOM')
-  if(membro.id === "405333631423348746") return message.channel.send(embedkawan);
+  if(membro.id === "852718017086488599") return message.channel.send(embedkawan);
 
   let embedhenry = new Discord.MessageEmbed()
   .setTitle(`:rainbow_flag: │Teste de Baitola!`)

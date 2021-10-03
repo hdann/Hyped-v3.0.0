@@ -22,6 +22,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   let isFollowing = db.get(`${message.author.id}_${member.id}_isFollowing`)
   let items = db.get(`${member.id}_items.1`) || db.get(`${member.id}_items.2`) || db.get(`${member.id}_items.3`) || db.get(`${member.id}_items.4`) || db.get(`${member.id}_items.5`)
 
+
   let avatar = member.avatarURL({ dynamic: true, format: "png", size: 1024 });
 
   if(!sobremim) {
@@ -43,6 +44,15 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .addField(`> 📰 | Mensagem:`, `${sobremim}`)
   .setFooter(`Seguidores: ${followers} | Seguindo: ${following}`);
 
+  const embed1 = new Discord.MessageEmbed()
+  .setThumbnail(avatar)
+  .setTitle(`${items}| Perfil de: ${member.tag}`)
+  .setColor(color)
+  .addField(`> 💸 | Dinheiro:`, `$ ${money}`)
+  .addField(`> 🏆 | XP Global:`, `**${xp}**`)
+  .addField(`> 📰 | Mensagem:`, `${sobremim}`)
+  .setFooter(`Seguidores: ${followers} | Seguindo: ${following} - Mencione o perfil de alguém para segui-lo!`);
+
   let botao1 = new disbut.MessageButton()
   .setStyle('blurple')
   .setLabel('Follow')
@@ -58,7 +68,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .addComponents(botao2);
 
   if(message.author.id === member.id) {
-    return message.channel.send(embed)
+    return message.channel.send(embed1)
   } 
   message.channel.send(embed, row1).then(m => {
     const buttonFilter = (button) => button.clicker.user.id === message.author.id

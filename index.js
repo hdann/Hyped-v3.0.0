@@ -150,7 +150,7 @@ client.on('ready', () => {
       const helpembed = new Discord.MessageEmbed()
       .setTitle(`Bem vindo ao menu de ajuda!`)
       .setColor("RANDOM")
-      .addField(`🔗|Me Adicione!`, `[Click Here](https://hypeds.com/adicionar)`)
+      .addField(`🔗|Me Adicione!`, `[Click Here](https://www.hypeds.com/addbot)`)
       .addField(`🔧|Staff`, `\`${prefix}warn\` <user> - Avisa um usuário!
       \`${prefix}mute\` <user> <time> <reason> - Muta um usuário
       \`${prefix}ban\` <user> <reason> - Bane um usuário
@@ -180,7 +180,7 @@ client.on('ready', () => {
     }
 
     if(cmdS == 'embed') {
-      const descriptions = argss.find(arg => arg.name.toLowerCase() == "conteúdo").value;
+      const descriptions = argss.find(arg => arg.name.toLowerCase() == "conteúdo").value; 
 
       const cmdembeds = new Discord.MessageEmbed()
       .setDescription(descriptions)
@@ -264,6 +264,7 @@ channel.send(messageapagada);
 //Level-System
 client.on('message', (message) => {
   if(message.author.bot) return; 
+  if(message.channel.type === "dm") return;
   
   db.add(`${message.guild.id}_${message.author.id}_points`, 1)
   db.add(`${message.author.id}_points`, 1)
@@ -551,7 +552,7 @@ app.get("/", (request, response) => {
 
 </head><body><div class="outer-container" wfd-id="0">
     <div class="container" wfd-id="1">
-        <img src="https://botlist.hypedbot.net/img/logo.png" class="logo">
+        <img src="https://botlist.hypeds.com/img/logo.png" class="logo">
         <p class="plasma">Status Do Hyped</p>
         <p class="ends" id="ends">Status Da Host: Online</p>
         <p class="date" id="date">Status Do Site: Online</p>
@@ -562,7 +563,6 @@ app.get("/", (request, response) => {
   console.log(`⚠️ | Ping recebido às ${ping.getUTCHours()}:${ping.getUTCMinutes()}:${ping.getUTCSeconds()}`);
 })
 app.listen(PORT)
-
 
 //Código de ! Diogo06🐾#1135 Não Disturbe
 client.login(TOKEN);

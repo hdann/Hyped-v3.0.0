@@ -6,18 +6,20 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   const brazilembed = new Discord.MessageEmbed()
   .setTitle(`Bem Vindo Ao Menu De Ajuda!`)
   .setColor(color)
-  .addField(`🔗|Me Adicione`, `[Clique Aqui](https://hypeds.com/adicionar)`)
+  .addField(`🔗|Me Adicione`, `[Clique Aqui](https://www.hypeds.com/addbot)`)
   .addField(`💿|Meus Comandos`, `*Para acessar as abas basta reagir de acordo com o que procura!*`)
   .addField(`<:pasta:786293846156771379>|CATEGORIAS:`, `
   \🔍**|Info**
+  \⚙️**|Utiliários**
   \🔧**|Staff**
   \😆**|Diversão**
   \😀**|Diversão2**
   \🛠️**|Config**
   \↩️|*Voltar*`)
-  .setImage(`https://imgur.com/weG2B87.png`)
+  .setImage(`https://i.imgur.com/HpI5ppM.png`)
   if(message.guild.region === "brazil") return message.channel.send(brazilembed).then(msg => {
     msg.react('🔍').then(r => {
+      msg.react('⚙️').then(r6 => {
       msg.react('🔧').then(r1 => {
         msg.react('😆').then(r2 => {
           msg.react('😀').then(r3 => {
@@ -30,6 +32,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
               const funFilter2 = (reaction, user) => reaction.emoji.name === '😀' && user.id === message.author.id;
               const configFilter = (reaction, user) => reaction.emoji.name === '🛠️' && user.id === message.author.id;
               const backFilter = (reaction, user) => reaction.emoji.name === '↩️' && user.id === message.author.id;
+              const utilFilter = (reaction, user) => reaction.emoji.name === '⚙️' && user.id === message.author.id;
 
               const infos = msg.createReactionCollector(infosFilter);
               const adm = msg.createReactionCollector(admFilter);
@@ -37,6 +40,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
               const fun2 = msg.createReactionCollector(funFilter2);
               const config = msg.createReactionCollector(configFilter);
               const back = msg.createReactionCollector(backFilter);
+              const util = msg.createReactionCollector(utilFilter);
 
               //Embed Edits
               infos.on('collect', r => {
@@ -50,19 +54,9 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
                *${prefix}perfil ou profile <usuario>* - Mostra o seu Perfil do Hyped.
 
-               *${prefix}daily* - Te da Até $ 10.000,00 por Dia.
-
                *${prefix}points ou ${prefix}pontos* - Mostra sua pontuação no Hyped.
 
-               *${prefix}atm ou ${prefix}bal - Te mostra quanto dinheiro vc tem*
-
-               *${prefix}lembrete <tempo> <lembrete>* - Te lembra de algo importante.
-
                *${prefix}ping* - Mostra o delay bot-servidor.
-
-               *${prefix}tempo ou ${prefix}weather* - Mostra como está o tempo na sua cidade!
-
-               *${prefix}qrcode <url>* - Cria um qrcode!
 
                *${prefix}serverinfo* - informações do servidor!
 
@@ -74,6 +68,30 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
                *${prefix}uptime* - o horário em que eu acordei!`)
                msg.edit(infoembed)
+               msg.reactions.resolve('🔍').users.remove(message.author.id)
+              })
+              util.on('collect', r => {
+                const utilsEmbed = new Discord.MessageEmbed()
+                .setTitle(`⚙️| Comandos Utiliários`)
+                .setColor(color)
+                .setDescription(`Meu prefixo neste servidor **${prefix}**`)
+                .addField('Meus Comandos', `*${prefix}daily* - Te da Até $ 10.000,00 por Dia.
+                
+                *${prefix}atm ou ${prefix}bal* - Te mostra quanto dinheiro vc tem
+
+                *${prefix}loja* - Te permite comprar decorações para o seu perfil do hyped.
+                
+                *${prefix}tempo ou ${prefix}weather* - Mostra como está o tempo na sua cidade!
+                
+                *${prefix}qrcode <url>* - Cria um qrcode!
+                
+                *${prefix}encurta <url>* - Encurta uma url.
+                
+                *${prefix}verify* - Faz a verifiação do captcha.
+                
+                *${prefix}urlbutton* - Faz um botão com url!`)
+                msg.edit(utilsEmbed)
+                msg.reactions.resolve('⚙️').users.remove(message.author.id)
               })
               adm.on('collect', r1 => {
                 const admembed = new Discord.MessageEmbed()
@@ -101,11 +119,10 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
                 *${prefix}lock* - Tranca um canal!
 
                 *${prefix}unlock* - Destranca um canal!
-
-                *${prefix}urlbutton* - Faz um botão com url!
                 
                 *${prefix}embed <mensagem>* - Cria um embed apartir de uma mensagem.`)
                 msg.edit(admembed)
+                msg.reactions.resolve('🔧').users.remove(message.author.id)
               })
               fun.on('collect', r2 => {
                 const funembed = new Discord.MessageEmbed()
@@ -114,15 +131,11 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
                 .setDescription(`Meu Prefixo neste servidor **${prefix}**`)
                 .addField('Meus Comandos:', `*${prefix}bolsonaro <mensagem>* - Faz o bolsonaro falar algo.
 
-               *${prefix}coinflip* - Joga moeda para cima.
-
                *${prefix}simsimi* <mensagem> - Fale com o simsimi. 
 
                *${prefix}say <mensagem>* - Faz com que eu repita uma frase.
 
                *${prefix}fakemsg <usuário> <mensagem>* - Faz com que vc fale por alguém!
-
-               *${prefix}bigtext <mensagem>* - Faz uma mensagem com letras grandes !
 
                *${prefix}reddit* - Envia um Meme do Reddit.
 
@@ -136,10 +149,9 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
                *${prefix}wasted <usuário>* - Cria um meme wasted com o avatar do usuário.
 
-               *${prefix}reverse <mensagem>* - Inverte sua mensagem !
-
-               *${prefix}lenny* - Aquela carinha. ( ͡ʘ ͜ʖ ͡ʘ)`)
+               *${prefix}reverse <mensagem>* - Inverte sua mensagem !`)
                msg.edit(funembed)
+               msg.reactions.resolve('😆').users.remove(message.author.id)
               })
               fun2.on('collect', r3 => {
                 const embeddiversao = new Discord.MessageEmbed()
@@ -164,16 +176,11 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
                *${prefix}tiodopave* - Manda um piada de Tiozão
 
-               *${prefix}ship <usuário> <usuário>* - Shipa 2 usuários
-
                *${prefix}8ball <mensagem>* - Responde suas perguntas.
 
-               *${prefix}morse <mensagem>* - Transforma um texto em código morse.
-
-               *${prefix}cat* - Mostra uma Imagem fofinha de um gato!
-
-               *${prefix}dog* - Mostra uma imagem fofinha de cachorro.`)
+               *${prefix}morse <mensagem>* - Transforma um texto em código morse.`)
                msg.edit(embeddiversao)
+               msg.reactions.resolve('😀').users.remove(message.author.id)
               })
               config.on('collect', r4 => {
                 const configembed = new Discord.MessageEmbed()
@@ -189,31 +196,37 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
                 *${prefix}setblocker* - Liga o Sistema Anti-Invite
 
                 *${prefix}sobremim <mensagem>* - Define uma Bio Para o seu Perfil.
+
+                *${prefix}setcaptcha <true ou false> <id do cargo>* - Define um captcha no seu servidor.
                 
                 *${prefix}setwelcome <canal>* - Define um chat para o welcome.`)
                 msg.edit(configembed)
+                msg.reactions.resolve('🛠️').users.remove(message.author.id)
               })
               back.on('collect', r5 => {
                 const backembed = new Discord.MessageEmbed()
                 .setTitle(`Bem Vindo Ao Menu De Ajuda!`)
                 .setColor(color)
-                .addField(`🔗|Me Adicione`, `[Clique Aqui](https://hypeds.com/adicionar)`)
+                .addField(`🔗|Me Adicione`, `[Clique Aqui](https://www.hypeds.com/addbot)`)
                 .addField(`💿|Meus Comandos`, `*Para acessar as abas basta reagir de acordo com o que procura!*`)
                 .addField(`<:pasta:786293846156771379>|CATEGORIAS:`, `
                 \🔍**|Info**
+                \⚙️**|Utiliários**
                 \🔧**|Staff**
                 \😆**|Diversão**
                 \😀**|Diversão2**
                 \🛠️**|Config**
                 \↩️|*Voltar*`)
-                .setImage(`https://imgur.com/weG2B87.png`)
+                .setImage(`https://i.imgur.com/HpI5ppM.png`)
                 msg.edit(backembed)
+                msg.reactions.resolve('↩️').users.remove(message.author.id)
               })
 
               })
             })
           })
         })
+      })
       })
     })
 
@@ -223,7 +236,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   const embed1 = new Discord.MessageEmbed()
   .setTitle(`Welcome To Help Menu!`)
   .setColor(color)
-  .addField(`🔗|Add Me`, `[Click Here](https://hypeds.com/adicionar)`)
+  .addField(`🔗|Add Me`, `[Click Here](https://www.hypeds.com/addbot)`)
   .addField(`🔧|Staff`, `\`${prefix}warn\` <user> - Warn a User!
   \`${prefix}mute\` <user> <time> <reason> - Mute a User
   \`${prefix}ban\` <user> <reason> - Ban a User
