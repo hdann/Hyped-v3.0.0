@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   }
 
   if(!args[0]) {
-    message.channel.send(":x:| Krl Diogo, Escreve um Bagulho ae Prr!").then(m => m.delete(5000))
+    return message.channel.send(":x:| Krl Diogo, Escreve um Bagulho ae Prr!").then(m => m.delete(5000))
   }
 
   try {

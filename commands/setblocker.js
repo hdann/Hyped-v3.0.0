@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const db = require('quick.db');
 
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args, prefix, color, config) => {
   if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(':x: | Nop! Você não pode usar isso!')
 
   if(!message.guild.me.permissions.has(config.permission.adm)) {

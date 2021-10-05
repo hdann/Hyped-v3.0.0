@@ -564,5 +564,5 @@ app.get("/", (request, response) => {
 })
 app.listen(PORT)
 
-//Código de ! Diogo06🐾#1135 Não Disturbe
+//Código de ! Diogo06🐾#1337 Não Disturbe
 client.login(TOKEN);
