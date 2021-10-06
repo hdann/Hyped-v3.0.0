@@ -6,9 +6,6 @@ A powerful discord bot for your server! Hyped Bot V3.0
  * 📌 Defina o Prefixo em `config.json` localizados na pasta principal
  * 🌠 Inicie com `node index.js`
 
-**Código no Repl.it**
-<iframe frameborder="0" width="100%" height="500px" src="https://replit.com/@DiogoNunes2/Hyped-v3?embed=true"></iframe>
-
 **Requirements**
 
 * Node.js
