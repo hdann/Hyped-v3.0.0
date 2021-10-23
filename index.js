@@ -4,7 +4,6 @@ const fs = require('fs');
 const Canvas = require('discord-canvas');
 const db = require('quick.db');
 const express = require('express');
-const DBL = require('dblapi.js');
 const moment = require('moment');
 
 //Variaveis de Arquivos
@@ -26,6 +25,7 @@ client.aliases = new Discord.Collection();
 //Disbut
 require('discord-buttons')(client);
 
+/*
 //Discord bot List
 const dbl = new DBL(DBLTOKEN, client);
 
@@ -36,6 +36,7 @@ dbl.on('posted', () => {
 dbl.on('error', e => {
   console.log(`❌| ${e}`)
 })
+*/
 
 //Conferidor de comandos!
 fs.readdir("./commands/", (err, files) => {
