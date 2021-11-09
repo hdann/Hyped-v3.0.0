@@ -22,7 +22,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
   //`https://api.simsimi.net/v1/?text=${argumentos}&lang=pt&cf=true`
 
-  request.get(`https://api.simsimi.net/v2/?text=${argumentos}&lc=pt&cf=false`, (resp) => {
+  request.get(`https://api-sv2.simsimi.net/v2/?text=${argumentos}&lc=pt&cf=false`, (resp) => {
     let data = '';
 
     resp.on('data', (chunk) => {

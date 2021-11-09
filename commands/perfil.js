@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
+const Jimp = require('jimp');
 const db = require('quick.db');
-const disbut = require('discord-buttons');
 
 module.exports.run = async (client, message, args, prefix, color, config) => {
   const embd = new Discord.MessageEmbed()
@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
   let member = message.mentions.users.first()
 
-  if(!member) return message.channel.send(embd)
+  if(!member) return message.reply(embd)
 
   let money = db.fetch(`money_${member.id}`)
   let sobremim = db.get(`sobremim_${member.id}`)
@@ -20,8 +20,8 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   let followers = db.get(`followers_${member.id}`)
   let following = db.get(`following_${member.id}`)
   let isFollowing = db.get(`${message.author.id}_${member.id}_isFollowing`)
-  let items = db.get(`${member.id}_items.1`) || db.get(`${member.id}_items.2`) || db.get(`${member.id}_items.3`) || db.get(`${member.id}_items.4`) || db.get(`${member.id}_items.5`)
-
+  let items = db.get(`${message.author.id}_items.1`) || db.get(`${message.author.id}_items.2`) || db.get(`${message.author.id}_items.3`) || db.get(`${message.author.id}_items.4`) || db.get(`${message.author.id}_items.5`)
+  const chat = client.guilds.cache.get("777870393137430589").channels.cache.get("777870601243197451");
 
   let avatar = member.avatarURL({ dynamic: true, format: "png", size: 1024 });
 
@@ -31,89 +31,79 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   if(!money) money = 0
   if(!followers) followers = 0
   if(!following) following = 0
-  if(!xp) xp = `-> Este usuário não tem nenhum XP. Ele talvez não gosta de falar muito!`
+  if(!xp) xp = `0`
   if(!items) items = `🙍‍♂️`
 
+  let moneys = `Money: $ ${money}`
+  let xps = `Xp: ${xp}`
+  let Followers = `Seguidores: ${followers} | Seguindo: ${following}`
+  let msg = ` ${items} | Perfil de <@${member.id}>`
 
-  const embed = new Discord.MessageEmbed()
-  .setThumbnail(avatar)
-  .setTitle(`${items}| Perfil de: ${member.tag}`)
-  .setColor(color)
-  .addField(`> 💸 | Dinheiro:`, `$ ${money}`)
-  .addField(`> 🏆 | XP Global:`, `**${xp}**`)
-  .addField(`> 📰 | Mensagem:`, `${sobremim}`)
-  .setFooter(`Seguidores: ${followers} | Seguindo: ${following}`);
+  Jimp.read(`https://imgur.com/PpvBecm.png`, function (err, image) {
+    if(err) console.log(err)
+    Jimp.loadFont("Anton.fnt").then(async function (font) {
+      let avt = await Jimp.read(avatar)
+      avt.resize(210, 210)
 
-  const embed1 = new Discord.MessageEmbed()
-  .setThumbnail(avatar)
-  .setTitle(`${items}| Perfil de: ${member.tag}`)
-  .setColor(color)
-  .addField(`> 💸 | Dinheiro:`, `$ ${money}`)
-  .addField(`> 🏆 | XP Global:`, `**${xp}**`)
-  .addField(`> 📰 | Mensagem:`, `${sobremim}`)
-  .setFooter(`Seguidores: ${followers} | Seguindo: ${following} - Mencione o perfil de alguém para segui-lo!`);
+      image.print(font, 278, 830, member.tag)
+      image.print(font, 1638, 785, moneys)
+      image.print(font, 1638, 880, xps)
+      image.print(font, 290, 890, sobremim)
+      image.print(font, 70, 1015, Followers)
+      image.composite(avt, 30, 775)
 
-  let botao1 = new disbut.MessageButton()
-  .setStyle('blurple')
-  .setLabel('Follow')
-  .setID('seguir');
+      image.getBuffer(Jimp.MIME_PNG, async (err, buffer) => {
+        const attachment = new Discord.MessageAttachment(buffer, 'perfil.png')
 
-  let botao2 = new disbut.MessageButton()
-  .setStyle('red')
-  .setLabel('Unfollow')
-  .setID('unfollow');
+        if(message.author.id === member.id) {
+          return message.reply(`${items}| Seu Perfil`, attachment)
+        }
 
-  let row1 = new disbut.MessageActionRow()
-  .addComponents(botao1)
-  .addComponents(botao2);
+        message.reply(msg, attachment).then(msg => {
+          msg.react("✅").then(e => {
+            msg.react("❌").then(e1 => {
+              const followFilter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
+              const unfollowFilter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
 
-  if(message.author.id === member.id) {
-    return message.channel.send(embed1)
-  } 
-  message.channel.send(embed, row1).then(m => {
-    const buttonFilter = (button) => button.clicker.user.id === message.author.id
-    const buttonCollector = m.createButtonCollector(buttonFilter)
+              const follows = msg.createReactionCollector(followFilter);
+              const unfollows = msg.createReactionCollector(unfollowFilter);
 
-    const buttonFilter2 = (bu) => bu.clicker.user.id === !message.author.id
-    const buttonCollector2 = m.createButtonCollector(buttonFilter2)
+              follows.on('collect', async r => {
+                if(!isFollowing) {
+                  db.add(`followers_${member.id}`, 1)
+                  db.add(`following_${message.author.id}`, 1)
+                  db.set(`${message.author.id}_${member.id}_isFollowing`, true)
 
-    buttonCollector2.on('collect', async b1 => {
-      if(b1.id === "seguir") {
-        await b1.reply.send(`:x: | Você tem que digitar **${prefix}perfil** <@${member.id}> para poder seguir esse usuário!`, true)
-      }
-      if(b1.id === "unfollow") {
-        await b1.reply.send(`:x: | Você tem que digitar **${prefix}perfil** <@${member.id}> para poder deixar de seguir esse usuário!`, true)
-      }
+                  await message.reply(`:thumbsup: | Você começou a seguir: **${member.tag}**`)
+                  msg.reactions.resolve('✅').users.remove(message.author.id)
+                  msg.reactions.resolve('✅').users.remove(client.user.id)
+                }
+                if(isFollowing === true) {
+                  await message.reply(`:thumbsup: | Você já está seguindo: **${member.tag}**`)
+                  msg.reactions.resolve('✅').users.remove(message.author.id)
+                  msg.reactions.resolve('✅').users.remove(client.user.id)
+                }
+              })
+              unfollows.on('collect', async r1 => {
+                if(!isFollowing) {
+                  await message.reply(`:thumbsup: | Você não está seguindo: **${member.tag}**`)
+                  msg.reactions.resolve('❌').users.remove(message.author.id)
+                  msg.reactions.resolve('❌').users.remove(client.user.id)
+                }
+                if(isFollowing) {
+                  db.subtract(`followers_${member.id}`, 1)
+                  db.subtract(`following_${message.author.id}`, 1)
+                  db.delete(`${message.author.id}_${member.id}_isFollowing`)
+
+                  await message.reply(`:thumbsup: | Você deixou de seguir: **${member.tag}**`)
+                  msg.reactions.resolve('❌').users.remove(message.author.id)
+                  msg.reactions.resolve('❌').users.remove(client.user.id)
+                }
+              })
+            })
+          })
+        })
+      })
     })
-
-    buttonCollector.on('collect', async b => {
-      if(!isFollowing) {
-        if(b.id === "seguir") {
-        db.add(`followers_${member.id}`, 1)
-        db.add(`following_${b.clicker.user.id}`, 1)
-        db.set(`${message.author.id}_${member.id}_isFollowing`, true)
-        await b.message.edit(embed, { component: null })
-
-       await b.reply.send(`:thumbsup: | Você começou a seguir **${member.tag}**`, true)
-      }
-      if(b.id === "unfollow") {
-        await b.reply.send(`:x: | Você não está seguindo este usuário!`, true)
-      }
-    } 
-
-    if(isFollowing === true) {
-      if(b.id === "unfollow") {
-      db.subtract(`followers_${member.id}`, 1)
-      db.subtract(`following_${b.clicker.user.id}`, 1)
-      db.delete(`${message.author.id}_${member.id}_isFollowing`)
-      await b.message.edit(embed, { component: null })
-
-      await b.reply.send(`:thumbsup: | Você deixou de seguir **${member.tag}**`, true)
-     }
-     if(b.id === "seguir") {
-       await b.reply.send(`:x: | Você já está seguindo este usuário!`, true)
-     }
-    }
   })
- })
 }

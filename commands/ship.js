@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {//exportando o comando como 
   if(!membro1 || !membro2) return message.channel.send('Lembre-se de mencionar dois usuários para shippar')
     if(membro1 === membro2) return message.channel.send('Mencione duas pessoas diferentes')
   
-  const amor = Math.floor(Math.random() * 100);
+  let amor = Math.floor(Math.random() * 100);
     const loveIndex = Math.floor(amor / 10);
   const loveLevel = "█".repeat(loveIndex) + ".".repeat(10 - loveIndex);
 
@@ -20,7 +20,8 @@ module.exports.run = async (bot, message, args) => {//exportando o comando como 
 
       let calc1 = nomeFim1 - 3
     let calc2 = nomeFim2 - 3
-  
+  if(membro1.user.id === "554369040953638913" && membro2.user.id === "888818945220567071") amor = 100;
+  if(membro1.user.id === "779345546342301697" && membro2.user.id === "732549418829611098") amor = 100;
   let nomeship;
     if(amor > 60) {
       nomeship = membro1.user.username.slice(0, 3) + membro2.user.username.slice(0, 3);

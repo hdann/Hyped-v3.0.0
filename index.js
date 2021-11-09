@@ -92,13 +92,12 @@ client.on('message', async (message) => {
      if (!message.content.toLowerCase().startsWith(prefix)) return;
 
      //✅》Mensagem de Erro
-    const embederror = new Discord.MessageEmbed()
+     const embederror = new Discord.MessageEmbed()
     .setTitle(":x: | Erro! ")
     .setDescription("-> Não Achei Esse Comando!")
     .setTimestamp()
     .setColor('RED')
     .setFooter("© HypedGroupCode");
-  
 
     const args = message.content
         .trim().slice(prefix.length)
@@ -307,8 +306,7 @@ client.on("ready", () => {
   let activities = [
       `Utilize ${config.defaultPrefix}help`,
       `${client.guilds.cache.size} servidores!`,
-      `${client.channels.cache.size} canais!`,
-      `Paz No Discord`,
+      `Slash Commands estarão disponíveis em Breve!!!`,
       `${client.users.cache.size} usuários!`
     ],
     i = 0;
@@ -326,9 +324,7 @@ client.on("ready", () => {
   let activities = [
       `Utilize ${config.defaultPrefix}ajuda para obter ajuda`,
       `${client.guilds.cache.size} servidores!`,
-      `Entre No Meu Website! Https://hypedbot.net/hypedbot`,
-      `${client.channels.cache.size} canais!`,
-      `Me veja no TOP.GG!`,
+      `Slash Commands estarão disponíveis em Breve!!!`,
       `${client.users.cache.size} usuários!`
     ],
     i = 0;
