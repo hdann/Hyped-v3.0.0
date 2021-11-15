@@ -12,7 +12,6 @@ A powerful discord bot for your server! Hyped Bot V3.0
 * `beautify - 0.0.8`
 * `canvas - ^2.8.0`
 * `caxinha - ^0.2.62`
-* `dblapi.js - ^2.4.1`
 * `discord-buttons - ^4.0.0`
 * `discord-canvas - ^1.4.1`
 * `discord.js - ^12.5.3`
