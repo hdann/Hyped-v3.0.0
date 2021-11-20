@@ -105,6 +105,8 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
                 *${prefix}avisos ou ${prefix}warns <usuário>* - Mostra os Warns de um usuário
 
                 *${prefix}clearwarns ou ${prefix}rwarns <usuário>* - Limpa os warns de um usuário
+
+                *${prefix}ticket <create ou delete>* - Cria um Ticket!
                 
                 *${prefix}ban <usuário> <razão>* - Bane Um usuário
                 
@@ -193,12 +195,14 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
                 *${prefix}setlogs <canal>* - Define um canal para as logs do bot.
 
-                *${prefix}setblocker* - Liga o Sistema Anti-Invite
+                *${prefix}setblocker <on ou off>* - Liga o Sistema Anti-Invite
 
                 *${prefix}sobremim <mensagem>* - Define uma Bio Para o seu Perfil.
 
-                *${prefix}setcaptcha <true ou false> <id do cargo>* - Define um captcha no seu servidor.
-                
+                *${prefix}setcaptcha <on ou off> <id do cargo>* - Define um captcha no seu servidor.
+
+                *${prefix}ticket <on ou off>* - Habilita o sistema de ticket no servidor!
+
                 *${prefix}setwelcome <canal>* - Define um chat para o welcome.`)
                 msg.edit(configembed)
                 msg.reactions.resolve('🛠️').users.remove(message.author.id)
