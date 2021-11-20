@@ -5,13 +5,12 @@ const colors = require('../database/colors.json');
 module.exports.run = async (client, message, args, prefix, color, config) => {
 
   const embederror = new Discord.MessageEmbed()
-  .setTitle(`<a:HYpositive:763111725510950932> | Comando: ${prefix}SetColor`)
+  .setTitle(`<a:HYpositive:763111725510950932> | Comando: ${prefix}setcolor`)
   .setColor(`RANDOM`)
-  .setDescription(`<a:HYseta1:756119648654852106> **Use**: ${prefix}SetColor <Sua Cor> `)
+  .setDescription(`<a:HYseta1:756119648654852106> **Use**: ${prefix}setcolor <cor> `)
   .addField(`👍 | Observação:`, `<a:HYseta1:756119648654852106> O Bot Aceita Apenas Cores Em HEX! Ex: #ad5757`);
   
-  if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("Você não pode trocar a cor deste servidor, pois vc não tem a permissão necessária `MANAGE_GUILD`");
-  
+  if(!message.member.permissions.has("MANAGE_GUILD")) return message.reply(config.reply.noperm);
   if(!args[0]) return message.reply(embederror)
 
   colors[message.guild.id] = {
@@ -23,8 +22,8 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   });
 
   let embed = new Discord.MessageEmbed()
-  .setTitle("👍 | Cor Definda!")
+  .setTitle("<a:HYpositive:763111725510950932> | Cor Definda!")
   .setColor(`${args[0]}`)
-  .setDescription(`-> | Definida para **${args[0]}**`)
+  .setDescription(`> Cor Definida para **${args[0]}**`)
   message.channel.send(embed)
 }
