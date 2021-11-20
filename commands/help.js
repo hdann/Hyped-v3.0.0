@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   \🛠️**|Config**
   \↩️|*Voltar*`)
   .setImage(`https://i.imgur.com/HpI5ppM.png`)
-  if(message.guild.region === "brazil") return message.channel.send(brazilembed).then(msg => {
+   message.channel.send(brazilembed).then(msg => {
     msg.react('🔍').then(r => {
       msg.react('⚙️').then(r6 => {
       msg.react('🔧').then(r1 => {
@@ -105,8 +105,6 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
                 *${prefix}avisos ou ${prefix}warns <usuário>* - Mostra os Warns de um usuário
 
                 *${prefix}clearwarns ou ${prefix}rwarns <usuário>* - Limpa os warns de um usuário
-
-                *${prefix}ticket <create ou delete>* - Cria um Ticket!
                 
                 *${prefix}ban <usuário> <razão>* - Bane Um usuário
                 
@@ -115,6 +113,8 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
                 *${prefix}unban <usuário>* - Desbane um usuário.
 
                 *${prefix}unmute <usuário>* - Desmuta um usuário.
+
+                *${prefix}ticket <create ou delete>* - Cria um Ticket!
                 
                 *${prefix}slowmode <tempo>* - Configura um slowmode para o seu chat!
 
@@ -197,11 +197,11 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
                 *${prefix}setblocker <on ou off>* - Liga o Sistema Anti-Invite
 
+                *${prefix}ticket <on ou off>* - Define o Sistema de Ticket Ligado ou Desligado!
+
                 *${prefix}sobremim <mensagem>* - Define uma Bio Para o seu Perfil.
 
                 *${prefix}setcaptcha <on ou off> <id do cargo>* - Define um captcha no seu servidor.
-
-                *${prefix}ticket <on ou off>* - Habilita o sistema de ticket no servidor!
 
                 *${prefix}setwelcome <canal>* - Define um chat para o welcome.`)
                 msg.edit(configembed)

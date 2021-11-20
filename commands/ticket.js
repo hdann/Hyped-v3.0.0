@@ -15,7 +15,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
     if(!message.member.permissions.has(config.permission.adm)) return message.reply(config.reply.noperm);
 
     db.set(`ticketIsOn_${message.guild.id}`, true)
-    message.channel.send(`<a:HYpositive:763111725510950932> | Sistema de ticket ativado!`)
+    message.channel.send(`<a:HYpositive:763111725510950932> | Sistema de ticket foi ativado!`)
     return;
   } 
 
@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
     if(!message.member.permissions.has(config.permission.adm)) return message.reply(config.reply.noperm);
 
     db.set(`ticketIsOn_${message.guild.id}`, false)
-    message.channel.send(`:x: | Sistema de ticket desativado!`)
+    message.channel.send(`:x: | Sistema de ticket foi desativado!`)
     return;
   }
 
@@ -68,7 +68,10 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
     if(message.channel.id !== channelID) return message.channel.send(`:x: | Utilize esse comando no **canal** do ticket que você criou!`)
 
+    if(!channelID) return message.reply(`:x: | Você já deletou o Ticket!`)
+
     let deleteChannel = message.guild.channels.cache.get(channelID)
     deleteChannel.delete();
+    db.delete(`${message.guild.id}_${message.author.id}_ticketChannelID`)
   }
 }
