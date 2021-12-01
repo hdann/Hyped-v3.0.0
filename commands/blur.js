@@ -16,5 +16,5 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
   let attachment = new Discord.MessageAttachment(image, "blur.png")
 
-  await message.channel.send(attachment);
+  await message.lineReply(attachment);
 }

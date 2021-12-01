@@ -52,5 +52,5 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .setTitle(`:rainbow_flag: │Teste de Baitola!`)
   .setDescription(`${membro.username} é **${numero}%** Baitola`)
   .setColor('RANDOM')
-  message.channel.send(embed)
+  message.lineReply(embed)
 }

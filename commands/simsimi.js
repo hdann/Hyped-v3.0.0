@@ -14,15 +14,22 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   }
 
   let argumentos = args.slice(0).join(" ")
-  if(!argumentos) return message.channel.send(embd)
+  if(!argumentos) return message.lineReply(embd)
 
   //Webhook
   let image = (`https://imgur.com/4p2m765.png`)
   let webhook = await message.channel.createWebhook('Simsimi', {avatar: image})
 
+  let apis = [
+    `https://api-sv2.simsimi.net/v2/?text=${argumentos}&lc=pt&cf=false`,
+    `https://api.simsimi.net/v2/?text=${argumentos}&lc=pt&cf=false`
+  ]
+
+  var svrandom = await apis[Math.floor(Math.random() * apis.length)]
+
   //`https://api.simsimi.net/v1/?text=${argumentos}&lang=pt&cf=true`
 
-  request.get(`https://api-sv2.simsimi.net/v2/?text=${argumentos}&lc=pt&cf=false`, (resp) => {
+  request.get(svrandom, (resp) => {
     let data = '';
 
     resp.on('data', (chunk) => {

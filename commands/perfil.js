@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
   let member = message.mentions.users.first()
 
-  if(!member) return message.reply(embd)
+  if(!member) return message.lineReply(embd)
 
   let money = db.fetch(`money_${member.id}`)
   let sobremim = db.get(`sobremim_${member.id}`)
@@ -56,10 +56,10 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
         const attachment = new Discord.MessageAttachment(buffer, 'perfil.png')
 
         if(message.author.id === member.id) {
-          return message.reply(`${items}| Seu Perfil`, attachment)
+          return message.lineReply(`${items}| Seu Perfil`, attachment)
         }
 
-        message.reply(msg, attachment).then(msg => {
+        message.lineReply(msg, attachment).then(msg => {
           msg.react("✅").then(e => {
             msg.react("❌").then(e1 => {
               const followFilter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;

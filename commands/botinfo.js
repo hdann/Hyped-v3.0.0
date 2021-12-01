@@ -47,7 +47,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .addField('<a:HYbaiacu:756119666971377756> | Atualize algumas informações:', '**Clique em ↩**')
   .setFooter(`2021 © H Y P E D.`)
   .setTimestamp()
-  message.channel.send(embed).then(msg => {
+  message.lineReply(embed).then(msg => {
     msg.react('↩')
   })
 }

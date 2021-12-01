@@ -21,7 +21,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
     return message.reply(`:x: | Eu não tenho a permissão: ${config.permission.adm}`)
   }
 
-  if(!args[0]) return message.reply(embederror)
+  if(!args[0]) return message.lineReply(embederror)
 
   prefixes[message.guild.id] = {
     prefix: args[0]
@@ -35,5 +35,5 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .setTitle("👍 | Prefixo Definido!")
   .setColor(color)
   .setDescription(`-> | Definido para **${args[0]}**`)
-  message.channel.send(embed)
+  message.lineReply(embed)
 }

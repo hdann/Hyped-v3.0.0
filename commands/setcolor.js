@@ -25,5 +25,5 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .setTitle("<a:HYpositive:763111725510950932> | Cor Definda!")
   .setColor(`${args[0]}`)
   .setDescription(`> Cor Definida para **${args[0]}**`)
-  message.channel.send(embed)
+  message.lineReply(embed)
 }

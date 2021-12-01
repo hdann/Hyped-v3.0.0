@@ -27,7 +27,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
         .setColor("#008000")
         .setDescription(`Você coletou sua recompensa diária!\n\n :dollar:| Dinheiro Coletado: **\`R$${amount}\`**`);
         
-        message.channel.send(`${user}`, moneyEmbed);
+        message.lineReply(`${user}`, moneyEmbed);
         db.add(`money_${user.id}`, amount);
         db.set(`daily_${message.guild.id}_${user.id}`, Date.now());
     }

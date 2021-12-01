@@ -22,12 +22,12 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
   if(!args[0]) return message.reply(embd)
   if(args[0] === "on") {
-    message.channel.send(embed)
+    message.lineReply(embed)
     db.set(`${message.guild.id}_inviteblock`, server)
     return;
   }
   if(args[0] === "off") {
-    message.channel.send(":x: | O sistema de inviteblock foi desativado!")
+    message.lineReply(":x: | O sistema de inviteblock foi desativado!")
     db.delete(`${message.guild.id}_inviteblock`)
     return
   }

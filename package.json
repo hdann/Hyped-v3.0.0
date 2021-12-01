@@ -17,6 +17,7 @@
     "caxinha": "^0.2.62",
     "discord-buttons": "^4.0.0",
     "discord-canvas": "^1.4.1",
+    "discord-reply": "^0.1.2",
     "discord.js": "^12.5.3",
     "express": "^4.17.1",
     "jimp": "^0.16.1",

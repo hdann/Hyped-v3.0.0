@@ -15,6 +15,6 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
     if(err) {
       console.log(err)
     }
-    message.channel.send(`:thumbsup: | URL encurtada! A sua URL é: ${res}`)
+    message.lineReply(`:thumbsup: | URL encurtada! A sua URL é: ${res}`)
   })
 }

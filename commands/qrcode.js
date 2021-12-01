@@ -16,11 +16,11 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   }
 
   let text = args[0]
-  if(!text) message.channel.send(embd)
+  if(!text) message.lineReply(embd)
 
   let image = await Caxinha.canvas.createQrCode(text)
 
   let attachment = new Discord.MessageAttachment(image, `qrcode${random}.png`)
 
-  await message.channel.send(attachment);
+  await message.lineReply(attachment);
 }

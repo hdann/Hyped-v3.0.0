@@ -6,7 +6,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
   const embed = new Discord.MessageEmbed()
   .setTitle('💸| Seu Dinheiro')
-  .setDescription(`-> Você tem $${money}`)
+  .setDescription(`> Você tem $${money}`)
   .setColor(color)
-  message.channel.send(embed)
+  message.lineReply(embed)
 }

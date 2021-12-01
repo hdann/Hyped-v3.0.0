@@ -23,7 +23,7 @@ const Discord = require('discord.js');
     .setImage(bolsonaros)
     .setTimestamp()
     .setColor(color)
-    message.channel.send(embed)
+    message.lineReply(embed)
 
   
   };

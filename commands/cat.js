@@ -10,5 +10,5 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .setTitle("Gatos 🐱")
   .setImage(body.file);
 
-  message.channel.send(catembed);
+  message.lineReply(catembed);
 }

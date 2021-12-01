@@ -5,6 +5,12 @@ const Canvas = require('discord-canvas');
 const db = require('quick.db');
 const express = require('express');
 const moment = require('moment');
+require('discord-reply');
+
+/*
+  message.lineReply()
+  message.lineReplyNoMention()
+*/
 
 //Variaveis de Arquivos
 const config = require('./config.json');
@@ -123,7 +129,7 @@ client.on('message', async (message) => {
         console.log(`${message.guild.name}: ${message.author.tag} Usou ${command} no #${message.channel.name}`)
     } catch (err) {
     console.error('❌| Erro:' + err);
-    message.channel.send(embederror)
+    message.lineReply(embederror)
   }
 });
 
@@ -348,7 +354,7 @@ client.on("message", async message => {
   
   if (!message.member.hasPermission("ADMINISTRATOR")) {  
         if (regex.exec(message.content)) {
-           await message.channel.send(
+           await message.lineReply(
               `${message.author} **Você não pode postar link de outros servidores!**`
            )
            await message.delete(regex);

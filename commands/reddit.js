@@ -20,5 +20,5 @@ module.exports.run = async (client, message, args) => {
   .setFooter("© HypedGroupCode")
   .setTimestamp();
 
-  message.channel.send(embed)
+  message.lineReply(embed)
 }

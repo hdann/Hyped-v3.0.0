@@ -22,7 +22,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .setTimestamp()
   .setFooter("© HypedGroupCode");
 
-  message.channel.send(embed)
+  message.lineReply(embed)
 
   let id = channel.id
 

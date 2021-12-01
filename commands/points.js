@@ -19,23 +19,23 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
     const embd = new Discord.MessageEmbed()
     .setTitle(`🏆| Pontos de ${member.user.tag}`)
-    .setDescription(`-> XP nesse servidor: **${serverpoint1s}**
+    .setDescription(`> XP nesse servidor: **${serverpoint1s}**
   
-    -> XP global: **${globalpoint1s}**`)
+    > XP global: **${globalpoint1s}**`)
     .setColor(color)
     .setTimestamp();
 
-    message.channel.send(embd);
+    message.lineReply(embd);
   }
 
   if(!member) {
     const embed = new Discord.MessageEmbed()
     .setTitle(`🏆| Pontos de ${message.author.tag}`)
-    .setDescription(`-> Pontos nesse servidor: **${serverpoints}**
+    .setDescription(`> Pontos nesse servidor: **${serverpoints}**
   
-    -> Pontos globais: **${globalpoints}**`)
+    > Pontos globais: **${globalpoints}**`)
     .setColor(color)
     .setTimestamp();
-    message.channel.send(embed);
+    message.lineReply(embed);
   }
 }

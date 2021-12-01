@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   \🛠️**|Config**
   \↩️|*Voltar*`)
   .setImage(`https://i.imgur.com/HpI5ppM.png`)
-   message.channel.send(brazilembed).then(msg => {
+   message.lineReply(brazilembed).then(msg => {
     msg.react('🔍').then(r => {
       msg.react('⚙️').then(r6 => {
       msg.react('🔧').then(r1 => {

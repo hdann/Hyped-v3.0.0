@@ -30,5 +30,5 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .setColor(color);
 
   membro.send(embed);
-  message.channel.send(`:thumbsup: | Membro avisado! Agora <@${membro.id}> tem ${db.get(`warnings_${message.guild.id}_${membro.id}`)} avisos!`);
+  message.lineReply(`:thumbsup: | Membro avisado! Agora <@${membro.id}> tem ${db.get(`warnings_${message.guild.id}_${membro.id}`)} avisos!`);
 }

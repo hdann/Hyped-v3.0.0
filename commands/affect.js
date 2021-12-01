@@ -10,11 +10,11 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .setFooter(`© HypedGroupCode`);
 
   const member = message.mentions.users.first()
-  if(!member) return message.channel.send(embd)
+  if(!member) return message.lineReply(embd)
 
   let image = await Caxinha.canvas.affect(member.displayAvatarURL({ dynamic: true, format: "png", size: 1024 }))
 
   let attachment = new Discord.MessageAttachment(image, "affect.png")
 
-  await message.channel.send(attachment);
+  await message.lineReply(attachment);
 }

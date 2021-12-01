@@ -14,9 +14,9 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   let bio = args.join(' ')
 
   if(!bio){
-  return message.channel.send(embederror21)
+  return message.lineReply(embederror21)
   }
 
-message.channel.send(`Seu novo sobremim é: \`${bio}\`, Use ${prefix}perfil para ver sua Bio!`)
+message.lineReply(`Seu novo sobremim é: \`${bio}\`, Use ${prefix}perfil para ver sua Bio!`)
 db.set(`sobremim_${message.author.id}`, bio)
 }

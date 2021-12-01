@@ -11,6 +11,6 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
    .setTitle("Cachorros :dog:")
    .setImage(body.url);
 
-   message.channel.send(dogembed);
+   message.lineReply(dogembed);
 
 }

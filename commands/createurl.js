@@ -30,5 +30,5 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
   console.log(`✅| URL Criada! ID: ${random}`)
   channel.send(`✅| URL Criada! ID: ${random}`)
-  message.channel.send(`Sua URL customizada: https://status.hypeds.com/${args[0]} | ID: ${random}`)
+  message.lineReply(`Sua URL customizada: https://status.hypeds.com/${args[0]} | ID: ${random}`)
 }

@@ -27,7 +27,7 @@ exports.run = (client, message, args, prefix, color, config) => {
             .setFooter(`Utilize: h!weather ou h!tempo`)
             .setThumbnail(result[0].current.imageUrl)
             .setTimestamp()
-        message.channel.send(embed)
+        message.lineReply(embed)
 
     });
 };

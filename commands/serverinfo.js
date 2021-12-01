@@ -34,7 +34,7 @@ moment.locale('pt-br')
       .setTimestamp()
 
 
-    message.channel.send(embed)
+    message.lineReply(embed)
 
 }
 

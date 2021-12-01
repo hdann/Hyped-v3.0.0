@@ -12,5 +12,5 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .setColor(color)
   .setTimestamp();
 
-  message.channel.send(embed)
+  message.lineReply(embed)
 }

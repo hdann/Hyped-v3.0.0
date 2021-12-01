@@ -29,7 +29,7 @@ module.exports.run = (client, message, args, prefix, color, config) => {
   .addField(`👍 | Observação:`, `<a:HYseta1:756119648654852106> Nenhuma`)
   .setFooter(`© HypedGroupCode`);
 
-  if(!args[0]) return message.channel.send(embd)
+  if(!args[0]) return message.lineReply(embd)
 
-  message.channel.send(fortunes[Math.floor(Math.random() * fortunes.length)]);
+  message.lineReply(fortunes[Math.floor(Math.random() * fortunes.length)]);
 }

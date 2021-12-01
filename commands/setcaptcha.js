@@ -16,16 +16,16 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
     return message.reply(`:x: | Eu não tenho a permissão: ${config.permission.adm}`)
   }
    
-  if(!args[0]) return message.channel.send(embd)
-  if(!args[1]) return message.channel.send(embd)
+  if(!args[0]) return message.lineReply(embd)
+  if(!args[1]) return message.lineReply(embd)
 
   if(args[0] === "false") {
-    message.channel.send(`:x: | Eu desativei o captcha!`)
+    message.lineReply(`:x: | Eu desativei o captcha!`)
     db.set(`isGuild_${message.guild.id}`, false)
     return;
   }
   if(args[0] === "true") db.set(`isGuild_${message.guild.id}`, true)
   
   db.set(`role_${message.guild.id}`, args[1])
-  message.channel.send(`:white_check_mark: | Captcha ativado! Eu vou adicionar o cargo quando alguém completar o captcha! \n \n :thumbsup: - Para realizar o captcha digite **${prefix}verify**`)
+  message.lineReply(`:white_check_mark: | Captcha ativado! Eu vou adicionar o cargo quando alguém completar o captcha! \n \n :thumbsup: - Para realizar o captcha digite **${prefix}verify**`)
 }

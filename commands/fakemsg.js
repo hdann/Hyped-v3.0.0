@@ -33,6 +33,6 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
     webhook.delete();
 
   } catch (err) {//error
-    message.reply(`Mencione um Membro!`)
+    message.lineReply(`:x: | Mencione um Membro!`)
   }
 }

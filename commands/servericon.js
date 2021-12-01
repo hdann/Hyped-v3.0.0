@@ -5,5 +5,5 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .setColor(color)
   .setTitle('🖼️| Icone do Servidor')
   .setImage(message.guild.iconURL());
-  message.channel.send(embed)
+  message.lineReply(embed)
 }

@@ -17,12 +17,12 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
     .addField(`👍 | Observação:`, `<a:HYseta1:756119648654852106> Nenhuma`);
 
     let membro = message.mentions.users.first()
-    if(!membro) return message.reply(embedaviso)
+    if(!membro) return message.lineReply(embedaviso)
 
     let embedgay = new Discord.MessageEmbed()
     .setTitle(`:rainbow_flag: │ Howgay - Veja o quanto vc é gay - 100% Verídico`)
     .setDescription(`${membro.username} é **${numero}%** Gay!!`)
     .setImage(bolsonarosvar)
     .setColor(color)
-    message.channel.send(embedgay)
+    message.lineReply(embedgay)
 }

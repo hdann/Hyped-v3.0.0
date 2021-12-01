@@ -9,12 +9,12 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .setFooter(`© HypedGroupCode`);
 
   let membro = message.mentions.users.first()
-  if(!membro) return message.channel.send(embd);
+  if(!membro) return message.lineReply(embd);
   const embed = new Discord.MessageEmbed()
   .setTitle(`🖼️| Avatar de: ${membro.tag}`)
   .setColor(color)
   .setImage(membro.displayAvatarURL({ dynamic: true, format: "png", size: 1024 }))
   .setFooter(`© HypedGroupCode`);
 
-  message.channel.send(embed);
+  message.lineReply(embed);
 }
