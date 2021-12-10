@@ -93,17 +93,9 @@ client.on('message', async (message) => {
 
      //respondendo a menção
      if (message.content.startsWith(`<@!${client.user.id}>`||`@${client.username}`)) {
-     message.channel.send(`Olá, tudo bem? Quer Saber Mais Sobre Mim?  Use \`${prefix}help\` e veja meus comandos!`)
+     message.lineReply(`Olá, tudo bem? Meu Prefixo é \`h!\`! Use \`${prefix}help\` e veja meus comandos!`)
      }
      if (!message.content.toLowerCase().startsWith(prefix)) return;
-
-     //✅》Mensagem de Erro
-     const embederror = new Discord.MessageEmbed()
-    .setTitle(":x: | Erro! ")
-    .setDescription("-> Não Achei Esse Comando!")
-    .setTimestamp()
-    .setColor('RED')
-    .setFooter("© HypedGroupCode");
 
     const args = message.content
         .trim().slice(prefix.length)
@@ -122,6 +114,14 @@ client.on('message', async (message) => {
     if(command === "send") command = "chat"
     if(command === "pontos") command = "points"
     if(command === "xp") command = "points"
+
+    //✅》Mensagem de Erro
+    const embederror = new Discord.MessageEmbed()
+    .setTitle(":x: | Erro! ")
+    .setDescription(`> Não achei o comando: \`${command}\`!`)
+    .setTimestamp()
+    .setColor('RED')
+    .setFooter("© HypedGroupCode");
 
     try {
         const commandFile = require(`./commands/${command}.js`)

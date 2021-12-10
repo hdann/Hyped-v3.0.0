@@ -23,5 +23,5 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
     .setColor(color)
     .setTimestamp()
     .setFooter(`Publicado por: ${message.author.username}`, message.author.avatarURL)
-  message.lineReply(embed)
+  message.channel.send(embed)
 }
