@@ -12,20 +12,20 @@ A powerful discord bot for your server! Hyped Bot V3.0
 ### Exemplo do `config.json`:
 ```json 
 {
-  "defaultPrefix": "h!",
-  "defaultColor": "#603171",
-  "websiteURL": "https://www.hypeds.com/hypedbot",
-  "statusURL": "https://stats.uptimerobot.com/1BnoXi6Mgp",
-  "githubURL": "https://github.com/DiogoNSPI06/Hyped-v3.0.0",
+  "defaultPrefix": "<PREFIXO PADRÃO DO BOT>",
+  "defaultColor": "<COR PADRÃO DO BOT>",
+  "websiteURL": "<WEBSITE DO BOT>",
+  "statusURL": "<STATUSPAGE URL>",
+  "githubURL": "<GITHUB URL>",
   "owner": {
-    "id": "732549418829611098",
-    "nickname": "! Diogo06🐾#1337"
+    "id": "<ID DO DONO DO BOT>",
+    "nickname": "<NICKNAME DO DONO DO BOT>"
   },
   "client": {
-    "version":"v3.1.1",
-    "id": "777850651669168138",
-    "nickname": "H Y P E D",
-    "description": "Sou o Hyped, um bot criado com <:Js:821710518967861258> Node.js usando a <:Djs:821710657162444820> Discord.js v12.5.3"
+    "version":"<VERSÃO DO BOT>",
+    "id": "<ID DO BOT>",
+    "nickname": "<NICKNAME DO BOT>",
+    "description": "<DESCRÇÃO DO BOT>"
   },
   "permission":{
     "adm": "ADMINISTRATOR",
