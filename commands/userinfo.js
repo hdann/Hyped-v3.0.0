@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const Disbut = require('discord-buttons');
+const axios = require("axios");
 const db = require('quick.db');
 const moment = require('moment');
 
@@ -28,6 +29,9 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
     offline: ' <:offline:821496127701385267> Offline'
   }
 
+  //Get User Banner
+  const bannerURL = await getUserBannerUrl(member.id, { size: 4096 });
+
   const embedLeft = new Discord.MessageEmbed()
   .setAuthor(`🔍| Informações do usuário`)
   .setColor(color)
@@ -50,13 +54,14 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   .addField('> Comando solicitado por',`**${message.member.displayName}**`,inline)
   .addField('> **🚪|Entrou aqui em:**', formatDate('DD/MM/YYYY, às HH:mm:ss', member.joinedAt))
   .addField('> **💼|Cargos**', member.roles.cache.array())
+  .setImage(bannerURL)
   .addField('📄 | Voltar a Página', '️**Clique em ◀️**')
   .setTimestamp()
   .setFooter(`© HypedGroupCode`);
 
   const bArrowLeft = new Disbut.MessageButton()
   .setEmoji('◀️')
-  .setID('ArrowLeft')
+  .setID(`ArrowLeft_${member.id}_${message.guild.id}`)
   .setStyle('blurple');
 
   const bArrowLeftDisabled = new Disbut.MessageButton()
@@ -67,7 +72,7 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
   const bArrowRight = new Disbut.MessageButton()
   .setEmoji('▶️')
-  .setID('ArrowRight')
+  .setID(`ArrowRight_${member.id}_${message.guild.id}`)
   .setStyle('blurple');
 
   const bArrowRightDisabled = new Disbut.MessageButton()
@@ -84,16 +89,42 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
 
   message.channel.send(embedLeft, row1).then(m => {
     client.on('clickButton', async b => {
-      if(b.id === "ArrowLeft") {
+      if(b.id === `ArrowLeft_${member.id}_${message.guild.id}`) {
         b.message.edit(embedLeft, { components: row1 })
         await b.reply.defer()
       }
-      if(b.id === "ArrowRight") {
+      if(b.id === `ArrowRight_${member.id}_${message.guild.id}`) {
         b.message.edit(embedRight, { components: row2 })
         await b.reply.defer()
       }
     })
   })
+
+  //This code is not Mine Source: https://stackoverflow.com/questions/68334431/get-user-banner-in-discord-js
+  async function getUserBannerUrl(userId, { dynamicFormat = true, defaultFormat = "webp", size = 512 } = {}) {
+  if (![16, 32, 64, 128, 256, 512, 1024, 2048, 4096].includes(size)) {
+    throw new Error(`The size '${size}' is not supported!`);
+  }
+
+  if (!["webp", "png", "jpg", "jpeg"].includes(defaultFormat)) {
+    throw new Error(`The format '${defaultFormat}' is not supported as a default format!`);
+  }
+
+  const user = await client.api.users(userId).get();
+  if (!user.banner) return null;
+
+  const query = `?size=${size}`;
+  const baseUrl = `https://cdn.discordapp.com/banners/${userId}/${user.banner}`;
+
+  if (dynamicFormat) {
+    const { headers } = await axios.head(baseUrl);
+    if (headers && headers.hasOwnProperty("content-type")) {
+      return baseUrl + (headers["content-type"] == "image/gif" ? ".gif" : `.${defaultFormat}`) + query;
+    }
+  }
+
+  return baseUrl + `.${defaultFormat}` + query;
+ }
 }
 
 function formatDate (template, date) {

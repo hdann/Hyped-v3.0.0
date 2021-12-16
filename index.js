@@ -28,6 +28,8 @@ moment()
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 
+//client.on('debug', console.log)
+
 //Disbut
 require('discord-buttons')(client);
 
@@ -132,6 +134,7 @@ client.on('message', async (message) => {
     message.lineReply(embederror)
   }
 });
+
 
 //Registrando slash comands
 client.on('ready', () => {

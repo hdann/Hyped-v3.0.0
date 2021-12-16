@@ -1,4 +1,5 @@
-const Discord = require('discord.js')
+const Discord = require('discord.js');
+const db = require('quick.db');
 
 const moment = require('moment')
 moment.locale('pt-br')
@@ -7,6 +8,16 @@ moment.locale('pt-br')
 
     const date = message.guild.createdAt
     const joined = message.member.joinedAt
+
+    let on = 'Ligado'
+    let on2 = 'Ligado'
+    let on3 = 'Ligado'
+    let invBlock = db.get(`${message.guild.id}_inviteblock`)
+    let captcha = db.get(`isGuild_${message.guild.id}`)
+    let welcomeSys = db.get(`${message.guild.id}_welcomecanal`)
+    if(!captcha || captcha === "false") on = 'Desligado'
+    if(!invBlock) on2 = 'Desligado'
+    if(!welcomeSys) on3 = "Desligado"
 
     const region = {
       brazil: ':flag_br: Brazil'
@@ -24,17 +35,17 @@ moment.locale('pt-br')
       .addField('**📎| ID**', message.guild.id, true)
       .addField('> **👑| Dono(a)**', `${message.guild.owner.user.username}#${message.guild.owner.user.discriminator}`)
       .addField('> 🔹| Nível de boost:',message.guild.premiumTier, true)
-      .addField('<a:pogfish:821748401023746118> | Nivel de Verificação:', `${message.guild.verificationLevel}`)
+      .addField('<:BP_editar:753027401319055380> | Prefixo', `**${prefix}**`, true)
+      .addField('> <a:pogfish:821748401023746118> | Nivel de Verificação:', `${message.guild.verificationLevel}`)
       .addField(`👥| Membros: (${message.member.guild.memberCount})`,`**😀| Pessoas:** ${botGuild.memberCount - botCount} \n **🤖| Bots:**${botCount}`, true)
-      .addField('**🌎| Região**', message.guild.region, true)
       .addField(`**💬| Canais:** (${message.guild.channels.cache.size})`, `**📝| Canais de Texto:** ${message.guild.channels.cache.filter(m => m.type === 'text').size} \n **🔊| Canais de Voz:** ${message.guild.channels.cache.filter(m => m.type === 'voice').size} \n **📢| Canais de Anúncios:** ${message.guild.channels.cache.filter(m => m.type === 'news').size}`,true)
-      .addField('> **📥| Criado em**', formatDate('DD/MM/YYYY, às HH:mm:ss', date))
-      .addField('> **🚪| Você entrou em**', formatDate('DD/MM/YYYY, às HH:mm:ss', joined))
+      .addField('> **🛠️| Configuração do Servidor: **', `\`Anti Invite:\` **${on2}** \n \`Captcha:\` **${on}**\n \`Welcomer:\` **${on3}**`)
+      .addField('> **🗓️| Servidor Criado em**', formatDate('DD/MM/YYYY, às HH:mm:ss', date))
       .setFooter(`© HypedGroupCode`)
       .setTimestamp()
 
 
-    message.lineReply(embed)
+    message.channel.send(embed)
 
 }
 

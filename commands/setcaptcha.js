@@ -19,12 +19,12 @@ module.exports.run = async (client, message, args, prefix, color, config) => {
   if(!args[0]) return message.lineReply(embd)
   if(!args[1]) return message.lineReply(embd)
 
-  if(args[0] === "false") {
+  if(args[0] === "off") {
     message.lineReply(`:x: | Eu desativei o captcha!`)
     db.set(`isGuild_${message.guild.id}`, false)
     return;
   }
-  if(args[0] === "true") db.set(`isGuild_${message.guild.id}`, true)
+  if(args[0] === "on") db.set(`isGuild_${message.guild.id}`, true)
   
   db.set(`role_${message.guild.id}`, args[1])
   message.lineReply(`:white_check_mark: | Captcha ativado! Eu vou adicionar o cargo quando alguém completar o captcha! \n \n :thumbsup: - Para realizar o captcha digite **${prefix}verify**`)
